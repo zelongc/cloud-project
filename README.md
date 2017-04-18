@@ -1,11 +1,10 @@
-# cloud-project
-# Project Title
+# Cloud Computing Project
 
 This project is for the COMP90024 Cluster and Cloud Computing, including a tweet harvester, couchDB connector and couchDB processor.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.<br/>
 One thing need to be mentioned is that you have to apply for your own twitter developer account.
 
 ### Prerequisites
