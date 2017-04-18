@@ -11,72 +11,44 @@ These instructions will get you a copy of the project up and running on your loc
 * Apache CouchDB [Click to install](http://couchdb.apache.org/)
 * Python 3.XX version
 
-* TwitterAPI
+* TwitterAPI to make it easier to access Twitter server.
 
 ```
 pip3 install TwitterAPI
 ```
-* CouchDB
+* CouchDB lib for connecting to the couchDB.
 
 ```
 pip3 install CouchDB
 ```
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+* A Twitter Application Account for developer:[apply one](https://apps.twitter.com/)
 ```
-Give the example
+Login with a twitter account and then apply for a application, collect your consumer key and tokens etc.
 ```
-
-And repeat
-
+### HOW TO DO
+## In the file support.py
+* change 'search_tweets' to whichever tokens are you going to search.
+* change the 'consumer_key','consumer_secret','access_token_key' and 'access_token_secret' to your own token
+## to Start harvest
 ```
-until finished
+python3 Tweet.py -c [city]
 ```
+The above [city] refers to any major city described by boudning box in support.py. The city has to be lowcase characters.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
+## Exception log
+* Any exception occured will be record into log file. Usually the only exception is the duplication issue when inserting an existing tweet into database.
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Twitter API](https://github.com/geduldig/TwitterAPI) - API wrapper for harvest
 
-## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
+Currently version one
 ## Authors
 
 * **Zelong Cong** - *Initial work* 
@@ -89,6 +61,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Professor Richard Sinnott, gave us great pressure to do the project....ORZ....
