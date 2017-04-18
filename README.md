@@ -1,6 +1,6 @@
 # Cloud Computing Project
 
-This project is for the COMP90024 Cluster and Cloud Computing, including a tweet harvester, couchDB connector and couchDB processor.
+This project is for the COMP90024 Cluster and Cloud Computing, including a **tweet harvester, couchDB connector and couchDB processor**.
 
 ## Getting Started
 
@@ -8,15 +8,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-* Apache CouchDB [Click to install](http://couchdb.apache.org/)
+* Apache CouchDB [Click to install](http://couchdb.apache.org/) [a toturial](https://www.youtube.com/watch?v=nlqv9Np3iAU&t=586s)
 * Python 3.XX version
 
-* TwitterAPI to make it easier to access Twitter server.
+* TwitterAPI
 
 ```
 pip3 install TwitterAPI
 ```
-* CouchDB lib for connecting to the couchDB.
+* CouchDB lib
 
 ```
 pip3 install CouchDB
@@ -25,11 +25,11 @@ pip3 install CouchDB
 ```
 Login with a twitter account and then apply for a application, collect your consumer key and tokens etc.
 ```
-### HOW TO DO
+# HOW TO USE IT
 ## In the file support.py
 * change 'search_tweets' to whichever tokens are you going to search.
 * change the 'consumer_key','consumer_secret','access_token_key' and 'access_token_secret' to your own token
-## to Start harvest
+## Start harvest
 ```
 python3 Tweet.py -c [city]
 ```
@@ -37,6 +37,7 @@ The above [city] refers to any major city described by boudning box in support.p
 
 ## Exception log
 * Any exception occured will be record into log file. Usually the only exception is the duplication issue when inserting an existing tweet into database.
+
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
@@ -46,14 +47,11 @@ Add additional notes about how to deploy this on a live system
 * [Twitter API](https://github.com/geduldig/TwitterAPI) - API wrapper for harvest
 
 
-
 ## Versioning
 Currently version one
 ## Authors
 
 * **Zelong Cong** - *Initial work* 
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
