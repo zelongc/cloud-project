@@ -8,16 +8,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-<li>Apache CouchDB [Download it](http://couchdb.apache.org/)</li>
+* Apache CouchDB [Click to install](http://couchdb.apache.org/)
+* Python 3.XX version
 
-Python 3.xx 
-
-TwitterAPI
+* TwitterAPI
 
 ```
 pip3 install TwitterAPI
 ```
-CouchDB
+* CouchDB
 
 ```
 pip3 install CouchDB
