@@ -1,0 +1,5 @@
+##install essential package:
+
+
+pip3 install couchdb -y
+pip3 install TwitterAPI -y
