@@ -30,8 +30,8 @@ access_token_key='4300575193-NoZFlFeDchNp09AvEQToKQ9BsrsvLlynKQzN46P'
 access_token_secret='fXcIHPC9wnXg3bsfuZ5H5mU6nAAyGgFjCBYLhwOeiLgan'
 auth_type='oAuth1'
 
-db_username='cloudcomputing'
-db_login="cloudcomputing"
+db_username='admin1'
+db_login="password"
 
 
 ##### Pay attention to the delimiter : ‘the twitter’ is the AND twitter, and ‘the,twitter’ is the OR twitter
