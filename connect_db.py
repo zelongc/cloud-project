@@ -10,8 +10,8 @@ from couchdb import Server
 class db_server(object):
 
     def __init__(self,username,login):
-        self.secure_server=Server('http://%s:%s@127.0.0.1:5984' %(username,login))
-        self.db=self.secure_server["cloudcomputing"]
+        self.secure_server=Server('http://%s:%s@130.56.252.58:5984' %(username,login))
+        self.db=self.secure_server["tweet"]
 
     def insert(self,data):
         try:
