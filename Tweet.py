@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 #author: Zelong Cong
 # COMP 90024 Cluster and Cloud Computing
 
