@@ -1,4 +1,4 @@
-
+#!/usr/bin/python
 from couchdb import Server
 
 
