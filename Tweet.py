@@ -33,6 +33,13 @@ token_number=int(args['tokens'])
 
 db=connect_db.db_server(username=db_username,login=db_login)
 
+
+def twitter_log(content):
+    with open('twitter_log', 'a') as f:
+        f.write("["+datetime.datetime.now().__str__()+']\n')
+        f.write(content + '\n')
+
+
 ####### Recreate the function when using the couchDB
 def FileSave(content):
     lock.acquire(True)
@@ -59,13 +66,15 @@ def Streaming():
             print(r.status_code)
             for item in r.get_iterator():
                 if 'text' in item:
+                    print('doing streaming')
                     FileSave(item)
 
                 elif 'message' in item and item['code'] == 88:
-                    print('SUSPEND, RATE LIMIT EXCEEDED: %s\n' % item['message'])
+                    twitter_log('SUSPEND, RATE LIMIT EXCEEDED: %s\n' % item['message'])
                     time.sleep(910)
                     break
                 elif 'disconnect' in item:
+                    twitter_log('Disconnecting because %s' % item['disconnect']['reason'])
             #TwitterRequestError is thrown whenever the request fails
             # (i.e. when the response status code is not 200). A status
             # code of 500 or higher indicates a server error which is safe
@@ -109,6 +118,9 @@ def Searching():
 
     for item in r.get_iterator():
         FileSave(item)
+        print('doing searching')
+    twitter_log("searching_finished")
 if __name__=="__main__":
+    twitter_log('System Start, Gathering '+args['city']+' Using Auth '+args['tokens'])
     threading.Thread(target=Streaming).start()
     threading.Thread(target=Searching).start()
