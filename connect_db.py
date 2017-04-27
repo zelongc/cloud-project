@@ -2,6 +2,7 @@
 
 from couchdb import Server
 import datetime
+
 # server = Server() # connects to the local_server
 # >>> remote_server = Server('http://example.com:5984/')
 # >>> secure_remote_server = Server('https://username:password@example.com:5984/')
