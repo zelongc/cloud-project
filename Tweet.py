@@ -10,6 +10,8 @@ from support import *
 import argparse
 import threading
 import connect_db
+import datetime
+import time
 
 
 lock=threading.Lock()
@@ -17,6 +19,7 @@ lock=threading.Lock()
 # aquire the arguments---Target City
 ap = argparse.ArgumentParser()
 ap.add_argument("-c","--city",required=True,help="The target city which is going to be harvested")
+ap.add_argument("-t","--tokens",required=True,help="The access tokens")
 args = vars(ap.parse_args())
 
 #two types of geo_location
@@ -25,9 +28,16 @@ args = vars(ap.parse_args())
 
 geo_for_streaming=city_box[args["city"]]
 geo_for_searching=city_box_central[args["city"]]
-
+token_number=int(args['tokens'])
 #create a database Object
+
 db=connect_db.db_server(username=db_username,login=db_login)
+
+
+def twitter_log(content):
+    with open('twitter_log', 'a') as f:
+        f.write("["+datetime.datetime.now().__str__()+']\n')
+        f.write(content + '\n')
 
 
 ####### Recreate the function when using the couchDB
@@ -40,13 +50,12 @@ def FileSave(content):
         lock.release()
 ####################################################
 
-
 #  streaming must use oAuth1 mode
 def Streaming():
-    api = TwitterAPI(consumer_key=consumer_key,
-                     consumer_secret=consumer_secret,
-                     access_token_key=access_token_key,
-                     access_token_secret=access_token_secret,
+    api = TwitterAPI(consumer_key=Auth[token_number]['consumer_key'],
+                     consumer_secret=Auth[token_number]['consumer_secret'],
+                     access_token_key=Auth[token_number]['access_token_key'],
+                     access_token_secret=Auth[token_number]['access_token_secret'],
                      auth_type='oAuth1')
 
     while 1:
@@ -61,10 +70,11 @@ def Streaming():
                     FileSave(item)
 
                 elif 'message' in item and item['code'] == 88:
-                    print('SUSPEND, RATE LIMIT EXCEEDED: %s\n' % item['message'])
+                    twitter_log('SUSPEND, RATE LIMIT EXCEEDED: %s\n' % item['message'])
+                    time.sleep(910)
                     break
                 elif 'disconnect' in item:
-                    print('Disconnecting because %s' % item['disconnect']['reason'])
+                    twitter_log('Disconnecting because %s' % item['disconnect']['reason'])
             #TwitterRequestError is thrown whenever the request fails
             # (i.e. when the response status code is not 200). A status
             # code of 500 or higher indicates a server error which is safe
@@ -78,8 +88,10 @@ def Streaming():
                 raise
             else:
                 print('TwitterRequestError')
+                print()
                 # temporary interruption, re-try request
                 pass
+
         #TwitterConnectionError is thrown when the connection times out or is interrupted.
         # You can always immediately try making the request again.
         except TwitterConnectionError:
@@ -89,10 +101,10 @@ def Streaming():
 
 
 def Searching():
-    api = TwitterAPI(consumer_key=consumer_key,
-                     consumer_secret=consumer_secret,
-                     access_token_key=access_token_key,
-                     access_token_secret=access_token_secret,
+    api = TwitterAPI(consumer_key=Auth[token_number]['consumer_key'],
+                     consumer_secret=Auth[token_number]['consumer_secret'],
+                     access_token_key=Auth[token_number]['access_token_key'],
+                     access_token_secret=Auth[token_number]['access_token_secret'],
                      auth_type='oAuth2')
 
     #https://dev.twitter.com/rest/reference/get/search/tweets
@@ -105,10 +117,10 @@ def Searching():
                                    })
 
     for item in r.get_iterator():
-        print('doing seraching')
         FileSave(item)
-    print('searching finished!')
-
+        print('doing searching')
+    twitter_log("searching_finished")
 if __name__=="__main__":
+    twitter_log('System Start, Gathering '+args['city']+' Using Auth '+args['tokens'])
     threading.Thread(target=Streaming).start()
     threading.Thread(target=Searching).start()
