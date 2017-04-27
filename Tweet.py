@@ -66,7 +66,6 @@ def Streaming():
             print(r.status_code)
             for item in r.get_iterator():
                 if 'text' in item:
-                    print('doing streaming')
                     FileSave(item)
 
                 elif 'message' in item and item['code'] == 88:
@@ -118,7 +117,6 @@ def Searching():
 
     for item in r.get_iterator():
         FileSave(item)
-        print('doing searching')
     twitter_log("searching_finished")
 if __name__=="__main__":
     twitter_log('System Start, Gathering '+args['city']+' Using Auth '+args['tokens'])
