@@ -35,7 +35,7 @@ db=connect_db.db_server(username=db_username,login=db_login)
 
 
 def twitter_log(content):
-    with open('twitter_log', 'a') as f:
+    with open('twitter_log_'+args['city'], 'a') as f:
         f.write("["+datetime.datetime.now().__str__()+']\n')
         f.write(content + '\n')
 
