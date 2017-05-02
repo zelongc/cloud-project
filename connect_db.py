@@ -11,7 +11,7 @@ class db_server(object):
 
     def __init__(self,username,login):
         self.secure_server = Server('http://%s:%s@130.220.212.108:5984' % (username, login))
-        self.db = self.secure_server["tweet"]
+        self.db = self.secure_server["new_tweet"]
     def insert(self,data):
         try:
             doc_id,doc_rev=self.db.save(data)
