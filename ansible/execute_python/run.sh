@@ -1,0 +1,1 @@
+nohup python3 /root/COMP90024/cloud-project/Tweet.py -c sydney

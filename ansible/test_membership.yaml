@@ -1,0 +1,6 @@
+---
+- hosts: databases
+  tasks:
+  # - shell: curl http://admin1:password:5984/_membership
+  - command: df -h
+  - debug:

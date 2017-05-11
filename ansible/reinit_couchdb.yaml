@@ -1,0 +1,9 @@
+---
+- hosts: databases
+  remote_user: root
+  tasks:
+  - name: re-initial-couchdb
+    command: sh /root/reinit-couchdb.sh   #  run reiitial_couchdb.sh
+
+  - name: upload script 'change_to_mnt.sh' and run ()
+    script: ~/dropbox/ansible/change_to_mnt.sh

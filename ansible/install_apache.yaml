@@ -1,0 +1,39 @@
+---
+- hosts: web
+  become: yes
+  become_user: root
+
+  tasks:
+
+  - name: install apache web server.
+    script: ~/Dropbox/ansible/config_apache_flask/install_apache_flask_1.sh
+
+  - name: upload Flask __init__.py file to server
+    copy:
+      src: ~/dropbox/ansible/config_apache_flask/__init__.py
+      dest: /var/www/FlaskApp/FlaskApp/__init__.py
+      owner: root
+      group: root
+      mode: 0644
+  - name: upload config file of apache to server
+    copy:
+      src: ~/dropbox/ansible/config_apache_flask/FlaskApp.conf
+      dest: /etc/apache2/sites-available/FlaskApp.conf
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: enable the server
+    shell: sudo a2ensite FlaskApp
+    shell: service apache2 reload
+
+  - name: upload config file to apache
+    copy:
+      src: ~/dropbox/ansible/config_apache_flask/flaskapp.wsgi
+      dest: /var/www/FlaskApp/flaskapp.wsgi
+      owner: root
+      group: root
+      mode: 0644
+  - name: start server
+    shell: service apache2 restart 
+

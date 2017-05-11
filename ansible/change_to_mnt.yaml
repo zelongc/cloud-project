@@ -1,0 +1,5 @@
+---
+- hosts: databases
+  remote_user: root
+  tasks:
+  

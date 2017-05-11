@@ -1,0 +1,19 @@
+---
+- hosts: databases
+  become: yes
+  become_user: root
+  # remote_user: root
+  tasks:
+  # - name: modify sshd.config
+  #   lineinfile: 
+  #     dest: /etc/ssh/sshd_config
+  #     regexp: "^PermitRootLogin"
+  #     line: "PermitRootLogin yes"
+  #     state: present
+  # - name: Permit root log in
+  #   shell: cp /home/ubuntu/.ssh/authorized_keys /root/.ssh/
+  tasks:
+  - service: name=ssh  state=restarted
+
+# finish this script step by step...
+#ssh -i KEYPAIR.pem ubuntu@HOSTNAME   'sudo cp /home/ubuntu/.ssh/authorized_keys /root/.ssh/'

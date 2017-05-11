@@ -1,0 +1,14 @@
+---
+- hosts: databases
+  #become true and become_user make script run as root 
+  become: yes
+  become_user: root
+  # sudo: yes
+  tasks:
+  - name: lala
+    shell: |
+      sudo su -
+      mkdir temp
+      cd temp
+      wget https://github.com/zelongc/install-couchdb.git
+      sh install-couchdb.sh

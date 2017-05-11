@@ -1,0 +1,30 @@
+
+\\\\
+
+
+
+
+通过运行 initi-couchdb可以把couchdb恢复原貌，因为reinit 文件里就是删除couchdbuser 然后再重新给couchdb分配全新的config文件。。。。。。
+
+小心修改文件。。。
+
+早晨重新建一遍cluster
+
+
+cp -a /home/couchdb/data /mnt/data
+
+
+chown -R couchdb:couchdb /mnt/data
+chmod -R 0777 /mnt/   
+
+对于每个：
+
+(直接在couchdb文件里面修改)
+
+curl -X PUT http://admin1:password@localhost:5986/_config/couchdb/database_dir/ -d '"/mnt/data"'
+
+curl -X PUT http://admin1:password@localhost:5986/_config/couchdb/view_index_dir/ -d '"/mnt/data"'
+
+
+
+curl -X GET http://admin1:password@localhost:5986/_config/couchdb/database_dir/

@@ -1,0 +1,36 @@
+---
+- hosts: databases
+  #become true and become_user make script run as root 
+  # become: yes
+  # become_user: root
+  # sudo: yes
+  remote_user: root
+  tasks:
+
+  - name: Install git method
+    apt: name=git-all state=present
+    ##successfull. 
+
+  - name: Install curl
+    apt: name=curl state=present
+
+  - name: Git my coucdb package to VM in folder
+    git: 
+      repo: 'https://github.com/zelongc/install-couchdb.git'
+      dest: /root/temp/    # this folder must not exist
+      clone: yes # set it as no to check if the repos is cloned before. 
+      update: no
+
+  - name: Run the script to install the couchdb
+    command: sh /root/temp/install-couchdb.sh
+
+  - name: install packages for Python Harvester
+    apt: name=python3-pip state=present
+
+  - name: pip install couchdb and twitterAPI
+    pip: name=couchdb executable=pip3
+    pip: name=TwitterAPI executable=pip3
+
+
+    ##command to run this script:
+    #   ANSIBLE_HOST_KEY_CHECKING=False     ansible-playbook -i hosts -u ubuntu --key-file=~/dropbox/keystore/cloud.key git-clone.yaml

@@ -1,0 +1,59 @@
+---
+- hosts: databases
+  #become true and become_user make script run as root 
+  remote_user: root
+  # sudo: yes
+  tasks:
+  - name: upload sys.config and local.ini
+    copy:
+      src: ~/dropbox/ansible/config_file_for_couchdb/sys.config
+      dest: /root/apache-couchdb-2.0.0/rel/couchdb/releases/2.0.0/sys.config
+      owner: couchdb
+      group: couchdb
+      mode: 0777
+    copy:
+      src: ~/dropbox/ansible/config_file_for_couchdb/local.ini
+      dest: /root/apache-couchdb-2.0.0/rel/couchdb/etc/local.ini
+      owner: couchdb
+      group: couchdb
+      mode: 0777
+- hosts: db1
+  remote_user: root
+  tasks:
+  - name: upload vm.args
+    copy:
+      src: ~/dropbox/ansible/config_file_for_couchdb/vm.args-1
+      dest: /root/apache-couchdb-2.0.0/rel/couchdb/etc/vm.args
+      owner: couchdb
+      group: couchdb
+      mode: 0777
+- hosts: db2
+  remote_user: root
+  tasks:
+  - name: upload vm.args
+    copy:
+      src: ~/dropbox/ansible/config_file_for_couchdb/vm.args-2
+      dest: /root/apache-couchdb-2.0.0/rel/couchdb/etc/vm.args
+      owner: couchdb
+      group: couchdb
+      mode: 0777
+- hosts: db3
+  remote_user: root
+  tasks:
+  - name: upload vm.args
+    copy:
+      src: ~/dropbox/ansible/config_file_for_couchdb/vm.args-3
+      dest: /root/apache-couchdb-2.0.0/rel/couchdb/etc/vm.args
+      owner: couchdb
+      group: couchdb
+      mode: 0777
+- hosts: db4
+  remote_user: root
+  tasks:
+  - name: upload vm.args
+    copy:
+      src: ~/dropbox/ansible/config_file_for_couchdb/vm.args-4
+      dest: /root/apache-couchdb-2.0.0/rel/couchdb/etc/vm.args
+      owner: couchdb
+      group: couchdb
+      mode: 0777

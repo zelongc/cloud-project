@@ -1,0 +1,6 @@
+---
+- hosts: databases
+  remote_user: root
+  tasks:
+  - name: upgrade pip    # Python package couchdb is installed here
+    script: ~/dropbox/ansible/pip_install.sh

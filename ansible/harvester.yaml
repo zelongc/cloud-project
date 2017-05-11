@@ -1,0 +1,32 @@
+---
+# - hosts: databases
+#   become: yes
+#   become_user: root # these two commands play a same role as 'sudo su -' command , sort of...
+
+#   tasks:
+#   - name: Download harvester !
+#     git:
+#       repo: "https://xxx:xxx@github.com/zelongc/cloud-project.git"
+#       dest: /root/program/
+#       clone: yes
+
+
+
+
+- hosts: db1
+  tasks: 
+  - name: run haverster
+    shell: nohup python3 /root/program/Tweet_by_place.py -c sydney -t 1 &
+  - shell: nohup python3 /root/program/Tweet_by_place.py -c brisbane -t 2 &
+- hosts: db2
+  tasks:
+  - shell: nohup python3 /root/program/Tweet_by_place.py -c melbourne -t 3 &
+    shell: nohup python3 /root/program/Tweet_by_place.py -c hobart -t 4 &
+- hosts: db3
+  tasks:
+  - shell: nohup python3 /root/program/Tweet_by_place.py -c perth -t 5 &
+    shell: nohup python3 /root/program/Tweet_by_place.py -c adeliade -t 6 &
+- hosts: db4
+  tasks:
+  - shell: nohup python3 /root/program/Tweet_by_place.py -c camberra -t 7 &
+    shell: nohup python3 /root/program/Tweet_by_place.py -c darwin -t 8 &

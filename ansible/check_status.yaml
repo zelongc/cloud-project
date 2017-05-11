@@ -1,0 +1,22 @@
+- hosts: all
+  gather_facts: no
+  tasks: 
+    - shell: ps -ef | grep python3 
+      register: ps
+
+    - debug: var=ps.stdout_lines
+
+# - hosts: db1
+#   tasks:
+#     - command: kill 32404 32408
+# - hosts: db2
+#   tasks: 
+#     - command: kill 13050 13057
+# - hosts: db3
+#   tasks: 
+#     - command: kill 27243 27247
+# - hosts: db4
+#   tasks: 
+#     - name: kill python process....STOP Harvester
+#       command: kill 10142 10146
+
