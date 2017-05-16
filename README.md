@@ -1,6 +1,8 @@
 # Cloud Computing Project
 
 This project is for the COMP90024 Cluster and Cloud Computing, including a **tweet harvester, couchDB connector and couchDB processor**.
+## Deploy system with Ansilbe
+Ansible is used to make the deployment of system automaticly.
 
 ## Getting Started
 
@@ -31,9 +33,10 @@ Login with a twitter account and then apply for a application, collect your cons
 * change the 'consumer_key','consumer_secret','access_token_key' and 'access_token_secret' to your own token
 ## Start harvest
 ```
-python3 Tweet.py -c [city]
+python3 Tweet.py -c [city] -t [token]
+python3 Tweet_by_city.py -c [city] -t [token]
 ```
-The above [city] refers to any major city described by boudning box in support.py. The city has to be lowcase characters.
+The above [city] refers to any major city described by boudning box in support.py, [token] refers to your secret tokens. The city has to be lowcase characters. (see support.py)
 
 ## Exception log
 * Any exception occured will be record into log file. Usually the only exception is the duplication issue when inserting an existing tweet into database.
